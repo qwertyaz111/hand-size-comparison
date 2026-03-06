@@ -77,9 +77,10 @@
 <div class="container">
     <h1>✋手の大きさ比較ツール</h1> 
     <p class="description">
+        たくさんのご利用ありがとうございます😭🫶💗<br>
        性別と身長から手の大きさを推測できます。<br>
        実際の数値を入力して比較することもできます。<br>
-        <small>※初期値は各性別の平均値です。<br>
+        <small>※初期値は日本人の各性別の平均値です。<br>
             個人差があるため、数値はあくまで目安としてお楽しみください。<br>
             （出典：産総研人体寸法データベース等を参考にした推測値）</small>
     </p>
@@ -95,7 +96,7 @@
             <div><span class="hint">身長(cm)</span><input type="number" id="heightA" class="num-input" value="171.5" oninput="calcFromHeight('A')"></div>
             <div style="border-left: 1px solid #ccc; padding-left: 8px;"><span class="hint">手首〜中指先(cm)※優先</span><input type="number" id="handA" class="num-input" value="18.5" step="0.1" oninput="calcFromHand('A')"></div>
             <input type="color" id="colorA" class="color-picker" value="#ffcc99" oninput="update()">
-            <button class="btn-front" onclick="bringToFront('A')">前へ</button>
+            <button class="btn-front" onclick="bringToFront('A')">前面へ</button>
         </div>
 
         <div class="input-group group-b">
@@ -108,7 +109,7 @@
             <div><span class="hint">身長(cm)</span><input type="number" id="heightB" class="num-input" value="158.0" oninput="calcFromHeight('B')"></div>
             <div style="border-left: 1px solid #ccc; padding-left: 8px;"><span class="hint">手首〜中指先(cm)※優先</span><input type="number" id="handB" class="num-input" value="16.6" step="0.1" oninput="calcFromHand('B')"></div>
             <input type="color" id="colorB" class="color-picker" value="#ffad60" oninput="update()">
-            <button class="btn-front" onclick="bringToFront('B')">前へ</button>
+            <button class="btn-front" onclick="bringToFront('B')">前面へ</button>
         </div>
     </div>
     
