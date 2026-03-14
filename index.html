@@ -11,7 +11,7 @@
         .description { font-size: 13px; color: #666; margin-bottom: 20px; line-height: 1.6; }
         
         .display-area { 
-            position: relative; height: 450px; border: 2px solid #eee; margin-top: 20px; 
+            position: relative; height: 500px; border: 2px solid #eee; margin-top: 20px; 
             display: flex; justify-content: center; align-items: flex-end; overflow: hidden; 
             background-color: #fff; border-radius: 10px;
         }
@@ -25,7 +25,7 @@
         
         .hand-wrapper { 
             position: absolute; 
-            bottom: 20px; /* 手首の基準位置 */
+            bottom: 40px; /* 手首の位置 */
             left: 50%; 
             transform: translateX(-50%); 
             display: flex; 
@@ -42,7 +42,6 @@
 
         .label-tag { 
             position: absolute;
-            /* 下（手首）からの距離をJSで制御するため、bottom基準にする */
             bottom: 0;
             font-size: 14px; 
             font-weight: bold; 
@@ -68,8 +67,31 @@
         .btn-front:hover { background: #f0f0f0; }
 
         .share-area { margin-top: 20px; border-top: 1px dashed #ccc; padding-top: 20px; }
-        .btn-share { background: #000; color: #fff; border: none; padding: 10px 24px; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 14px; }
-        .license-text { margin-top: 25px; font-size: 10px; color: #aaa; line-height: 1.6; }
+        .btn-share { background: #000; color: #fff; border: none; padding: 10px 24px; border-radius: 25px; cursor: pointer; font-weight: bold; font-size: 14px; margin-bottom: 20px;}
+        
+        .other-tools-link {
+            margin-bottom: 25px;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 10px;
+        }
+        .other-tools-link a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+            font-weight: bold;
+            border: 2px solid #333;
+            padding: 10px 20px;
+            border-radius: 30px;
+            display: inline-block;
+            transition: 0.3s;
+        }
+        .other-tools-link a:hover {
+            background: #333;
+            color: #fff;
+        }
+
+        .license-text { font-size: 10px; color: #aaa; line-height: 1.6; }
     </style>
 </head>
 <body>
@@ -77,10 +99,10 @@
 <div class="container">
     <h1>✋手の大きさ比較ツール</h1> 
     <p class="description">
-       性別と身長から手の大きさを推測して比較できます。<br>
-       実際の手の大きさを入力して比較することもできます。<br>
+        性別と身長から手の大きさを推測して比較できます。<br>
+        実際の手の大きさを入力して比較することもできます。<br>
         <small>※初期値は日本人の各性別の平均値です。個人差があるため数値は目安です。<br>
-            （出典：産総研人体寸法データベース等を参考にした推測値）</small>
+        （出典：産総研人体寸法データベース等を参考にした推測値）</small>
     </p>
 
     <div class="controls">
@@ -134,6 +156,14 @@
 
     <div class="share-area">
         <button class="btn-share" onclick="shareOnX()">𝕏 で結果をシェアする</button>
+        
+        <div class="other-tools-link">
+            <p style="font-size: 12px; color: #888; margin-bottom: 10px;">こちらもチェック❣🤩</p>
+            <a href="https://qwertyaz111.github.io/foot-size-comparison/">
+                🦶足の大きさ比較ツール
+            </a>
+        </div>
+
         <div class="license-text">
             スクショ投稿や加工、トレース等はご自由にお楽しみください。<br>
             ※営利目的や商用利用はご遠慮ください。
@@ -177,22 +207,18 @@
         document.getElementById('shapeA').setAttribute('fill', document.getElementById('colorA').value);
         document.getElementById('shapeB').setAttribute('fill', document.getElementById('colorB').value);
 
-        const baseSize = 20; // 基準となる手の長さ
+        const baseSize = 20; 
         const scaleA = handA / baseSize;
         const scaleB = handB / baseSize;
 
-        // 手の拡大縮小
         document.getElementById('svgContainerA').style.transform = `scale(${scaleA})`;
         document.getElementById('svgContainerB').style.transform = `scale(${scaleB})`;
 
-        // ラベル位置調整（手首から指先までのピクセル数に合わせる）
-        // SVGの元の高さ300pxにスケールを掛け、さらに少し余白(10px)を足す
         const labelPosA = (300 * scaleA) + 10;
         const labelPosB = (300 * scaleB) + 10;
         document.getElementById('labelA').style.bottom = `${labelPosA}px`;
         document.getElementById('labelB').style.bottom = `${labelPosB}px`;
 
-        // 全体のズーム調整
         const maxHand = Math.max(handA, handB);
         const zoomThreshold = 22; 
         let zoomScale = 1;
